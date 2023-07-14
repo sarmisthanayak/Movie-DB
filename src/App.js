@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import NewReleases from './screens/NewReleases';
+import WhatsHot from './screens/WhatsHot';
+import { makeStyles } from '@material-ui/core/styles';
+ 
 
-function App() {
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    fontFamily: 'sans-serif',
+  },
+});
+
+const App = () =>{
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div className={classes.root}>
+      <Header />
+      <Routes>
+        <Route path="/new" element={<NewReleases/>} />
+        <Route path="/hot" element={<WhatsHot/>} />
+      </Routes>
+      <Footer />
     </div>
+  </Router>
   );
-}
+};
 
 export default App;
